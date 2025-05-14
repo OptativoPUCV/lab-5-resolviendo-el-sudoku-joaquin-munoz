@@ -45,10 +45,9 @@ void print_node(Node* n){
 
 int is_valid(Node* n) {
     int i, j, num;
-    
     // Validación de las filas
     for (i = 0; i < 9; i++) {
-        int row_check[10] = {0};  // Arreglo para marcar los números de la fila
+        int row_check[10] = {0};  // Arreglo para marcar los números de la fila(10 y no 9 ya que empezar con indice 0 no funcionaria)
         for (j = 0; j < 9; j++) {
             num = n->sudo[i][j];
             if (num != 0) {  // Si la casilla no está vacía
@@ -95,30 +94,44 @@ int is_valid(Node* n) {
 }
 
 
-List* get_adj_nodes(Node* n){
+List* get_adj_nodes(Node* n) {
   List* list = createList();  // Crear la lista vacía que contendrá los nodos adyacentes
+  
+  // Paso 1: Buscar la primera casilla vacía (0) en el Sudoku
   int fila = -1;
   int col = -1;
-  for(int i = 0;i < 9 && fila == -1;i++){
-    for(int j = 0 ;j < 9 && col == -1;j++){
-      if(n->sudo[i][j] == 0){
+  for (int i = 0; i < 9 && fila == -1; i++) {
+    for (int j = 0; j < 9 && col == -1; j++) {
+      if (n->sudo[i][j] == 0) {  // Si encontramos una casilla vacía
         fila = i;
         col = j;
-        break;
+        break;  // Romper el ciclo para no seguir buscando
       }
     }
   }
-  if(fila == -1 || col == -1){
+
+  // Si no se encuentra una casilla vacía, retornamos la lista vacía
+  if (fila == -1 || col == -1) {
     return list;
   }
-  for(int k = 1;k <= 9 ;k++){
-    Node* copia = copy(n);
-    copia->sudo[fila][col] = k;
-    pushBack(list,copia);
+
+  // Paso 2: Generar nodos adyacentes con números del 1 al 9 en la casilla vacía
+  for (int k = 1; k <= 9; k++) {
+    Node* copia = copy(n);  // Copiar el nodo original
+    copia->sudo[fila][col] = k;  // Colocar el número 'k' en la casilla vacía
+    
+    // Paso 3: Verificar si el nodo generado es válido
+    if (is_valid(copia)) {  // Si el nodo es válido
+      pushBack(list, copia);  // Agregar el nodo a la lista
+    } else {
+      free(copia);  // Si no es válido, liberar la memoria del nodo
+    }
   }
 
-  return list;  // Devolvemos la lista de nodos adyacentes
+  // Paso 4: Retornar la lista con los nodos válidos
+  return list;
 }
+
 
 
 int is_final(Node* n){
