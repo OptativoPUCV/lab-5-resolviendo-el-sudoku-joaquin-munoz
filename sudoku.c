@@ -65,7 +65,7 @@ List* get_adj_nodes(Node* n){
   if(fila == -1 || col == -1){
     return list;
   }
-  for(int k = 0;k <= 9 ;k++){
+  for(int k = 1;k <= 9 ;k++){
     Node* copia = copy(n);
     copia->sudo[fila][col] = k;
     pushBack(list,copia);
