@@ -134,9 +134,18 @@ List* get_adj_nodes(Node* n) {
 
 
 
-int is_final(Node* n){
-    return 0;
+int is_final(Node* n) {
+    // Recorremos todas las casillas del Sudoku
+    for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+            if (n->sudo[i][j] == 0) {  // Si encontramos una casilla vacía
+                return 0;  // No es un nodo final, retornamos 0
+            }
+        }
+    }
+    return 1;  // Si no encontramos ninguna casilla vacía, es un nodo final
 }
+
 
 Node* DFS(Node* initial, int* cont){
   return NULL;
