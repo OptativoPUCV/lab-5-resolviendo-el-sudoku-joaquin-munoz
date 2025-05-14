@@ -43,9 +43,55 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
+int is_valid(Node* n) {
+    int i, j, num;
+    
+    // Validación de las filas
+    for (i = 0; i < 9; i++) {
+        int row_check[10] = {0};  // Arreglo para marcar los números de la fila
+        for (j = 0; j < 9; j++) {
+            num = n->sudo[i][j];
+            if (num != 0) {  // Si la casilla no está vacía
+                if (row_check[num] == 1) {  // Si ya está marcado, la fila no es válida
+                    return 0;
+                }
+                row_check[num] = 1;  // Marcar el número
+            }
+        }
+    }
+    
+    // Validación de las columnas
+    for (j = 0; j < 9; j++) {
+        int col_check[10] = {0};  // Arreglo para marcar los números de la columna
+        for (i = 0; i < 9; i++) {
+            num = n->sudo[i][j];
+            if (num != 0) {  // Si la casilla no está vacía
+                if (col_check[num] == 1) {  // Si ya está marcado, la columna no es válida
+                    return 0;
+                }
+                col_check[num] = 1;  // Marcar el número
+            }
+        }
+    }
+    
+    // Validación de las submatrices 3x3
+    for (int k = 0; k < 9; k++) {
+        int sub_check[10] = {0};  // Arreglo para marcar los números de la submatriz 3x3
+        for (int p = 0; p < 9; p++) {
+            int i = 3 * (k / 3) + (p / 3);  // Calcular la fila dentro de la submatriz
+            int j = 3 * (k % 3) + (p % 3);  // Calcular la columna dentro de la submatriz
+            
+            num = n->sudo[i][j];
+            if (num != 0) {  // Si la casilla no está vacía
+                if (sub_check[num] == 1) {  // Si ya está marcado, la submatriz no es válida
+                    return 0;
+                }
+                sub_check[num] = 1;  // Marcar el número
+            }
+        }
+    }
 
-    return 1;
+    return 1;  // Si no hemos encontrado ningún error, el nodo es válido
 }
 
 
