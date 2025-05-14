@@ -9,3 +9,9 @@ sudoku.c:66:21: error: implicit declaration of function 'add_to_list' [-Werror=i
                      ^~~~~~~~~~~
 cc1.exe: all warnings being treated as errors
 3f0e54c
+Wed, May 14, 2025  9:12:49 AM: 
+ sudoku.c | 30 ++++++++++++++++--------------
+ 1 file changed, 16 insertions(+), 14 deletions(-)
+ tests:  0|5
+total_score: 0/70
+797f664
