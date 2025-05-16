@@ -150,10 +150,8 @@ int is_final(Node* n) {
 Node* DFS(Node* initial, int* cont){
   Stack* S = createStack();
   pushBack(S, initial) ;
-  printf("Hola") ;
   while(top(S) != NULL){
     cont++;
-    printf("?") ;
     Node* nodo = top(S);
     pop(S) ;
     if(is_final(nodo)) return nodo;
