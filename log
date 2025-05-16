@@ -68,3 +68,8 @@ Fri, May 16, 2025 10:00:33 AM:
  tests:  0|0
    [ INFO ] cargando sudoku de la figura de ejemplo
 6f25152
+Fri, May 16, 2025 10:02:04 AM: 
+ sudoku.c | 2 ++
+ 1 file changed, 2 insertions(+)
+ tests:  0|0
+53f381c
