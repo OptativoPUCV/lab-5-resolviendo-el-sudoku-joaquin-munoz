@@ -151,7 +151,7 @@ Node* DFS(Node* initial, int* cont){
   Stack* S = createStack();
   push(S, initial) ;
   printf("Hola") ;
-  while(S != NULL){
+  while(top(S) != NULL){
     cont++;
     printf("?") ;
     Node* nodo = top(S);
