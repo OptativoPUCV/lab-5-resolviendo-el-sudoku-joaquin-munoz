@@ -149,10 +149,11 @@ int is_final(Node* n) {
 
 Node* DFS(Node* initial, int* cont){
   Stack* S = createStack();
+  push(S, initial) ;
   while(S != NULL){
     cont++;
-    Node* nodo = top(initial);
-    pop(initial) ;
+    Node* nodo = top(S);
+    pop(S) ;
     if(is_final(nodo)) return nodo;
     List* nodos_adj = get_adj_nodes(nodo);
     Node *aux = first(nodos_adj) ;
