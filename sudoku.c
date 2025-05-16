@@ -159,7 +159,7 @@ Node* DFS(Node* initial, int* cont){
     if(is_final(nodo)) return nodo;
     List* nodos_adj = get_adj_nodes(nodo);
     Node *aux = first(nodos_adj) ;
-    while(nodos_adj != NULL){
+    while(aux != NULL){
       push(S,aux);
       aux = next(nodos_adj) ;
     }
